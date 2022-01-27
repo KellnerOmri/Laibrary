@@ -4,3 +4,5 @@ class Person(object):
         self.first_name
         self.last_name
         self.date
+        self.password
+        self.nick_name

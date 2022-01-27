@@ -1,0 +1,316 @@
+{
+  "Users": {
+    "Omri": {
+      "student_id": 4,
+      "register_course_list": [
+        "Math",
+        "English"
+      ],
+      "id": 1234,
+      "first_name": "Omri",
+      "last_name": "Kellner",
+      "password": "1234",
+      "date": "03.03.1994",
+      "is_student": true
+    },
+    "Lior": {
+      "student_id": 4,
+      "register_course_list": [
+        "Math",
+        "English"
+      ],
+      "id": 1234,
+      "first_name": "Lior",
+      "last_name": "Sabri",
+      "password": "1234",
+      "date": "03.03.1994",
+      "is_student": true
+    },
+    "Almog": {
+      "student_id": 4,
+      "register_course_list": [
+        "Math",
+        "English"
+      ],
+      "id": 1234,
+      "first_name": "Almog",
+      "last_name": "Almog",
+      "password": "12345",
+      "date": "03.03.1994",
+      "is_student": true
+    },
+    "Yoram": {
+      "student_id": 4,
+      "register_course_list": [
+        "Math",
+        "English"
+      ],
+      "id": 1234,
+      "first_name": "Yoram",
+      "last_name": "Yoram",
+      "password": "12345",
+      "date": "03.03.1994",
+      "is_student": true
+    },
+    "": {
+      "student_id": 4,
+      "register_course_list": [
+        "Math",
+        "English"
+      ],
+      "id": 1234,
+      "first_name": "",
+      "last_name": "",
+      "password": "",
+      "date": "03.03.1994",
+      "is_student": true
+    },
+    "Almogg": {
+      "student_id": 4,
+      "register_course_list": [
+        "Math",
+        "English"
+      ],
+      "id": 1234,
+      "first_name": "Almogg",
+      "last_name": "Almogg",
+      "password": "12345",
+      "date": "03.03.1994",
+      "is_student": true
+    },
+    "Almoggs": {
+      "student_id": 4,
+      "register_course_list": [
+        "Math",
+        "English"
+      ],
+      "id": 1234,
+      "first_name": "Almoggs",
+      "last_name": "Almoggs",
+      "password": "12345",
+      "date": "03.03.1994",
+      "is_student": true
+    },
+    "Almoggsasdf": {
+      "student_id": 4,
+      "register_course_list": [
+        "Math",
+        "English"
+      ],
+      "id": 1234,
+      "first_name": "Almoggsasdf",
+      "last_name": "Almoggsasdf",
+      "password": "12345d",
+      "date": "03.03.1994",
+      "is_student": true
+    },
+    "sadf": {
+      "student_id": 4,
+      "register_course_list": [
+        "Math",
+        "English"
+      ],
+      "id": 1234,
+      "first_name": "sadf",
+      "last_name": "sadf",
+      "password": "3242",
+      "date": "03.03.1994",
+      "is_student": true
+    },
+    "almog": {
+      "student_id": 4,
+      "register_course_list": [
+        "Math",
+        "English"
+      ],
+      "id": 1234,
+      "first_name": "almog",
+      "last_name": "almog",
+      "password": "safd",
+      "date": "03.03.1994",
+      "is_student": true
+    },
+    "David": {
+      "student_id": 4,
+      "register_course_list": [
+        "Math",
+        "English"
+      ],
+      "id": 1234,
+      "first_name": "David",
+      "last_name": "David",
+      "password": "1234",
+      "date": "03.03.1994",
+      "is_student": true
+    },
+    "Test": {
+      "student_id": 4,
+      "register_course_list": [
+        "Math",
+        "English"
+      ],
+      "id": 1234,
+      "first_name": "Test",
+      "last_name": "Test",
+      "password": "12345",
+      "date": "03.03.1994",
+      "is_student": true
+    }
+  },
+  "Books": {
+    "Algorithm": {
+      "#1": {
+        "name": "Algorithms Of Life",
+        "author": "Miri",
+        "inventory_quantity": 6
+      },
+      "#2": {
+        "name": "Math With Einstein",
+        "author": "Albert",
+        "inventory_quantity": 6
+      }
+    },
+    "Math": {
+      "#3": {
+        "name": "Algebra 1",
+        "author": "Yakov",
+        "inventory_quantity": 8,
+        "useful_courses_list": [
+          "Math"
+        ]
+      },
+      "#4": {
+        "name": "Algebra 2",
+        "author": "Yakov",
+        "inventory_quantity": 5,
+        "useful_courses_list": [
+          "Math"
+        ]
+      },
+      "#5": {
+        "name": "linear algebra",
+        "author": "Yossef",
+        "inventory_quantity": 3,
+        "useful_courses_list": [
+          "Math"
+        ]
+      },
+      "#54": {
+        "name": "History Of MATH",
+        "author": "Yoni",
+        "inventory_quantity": 5,
+        "useful_courses_list": [
+          "Math"
+        ]
+      },
+      "": {
+        "name": "",
+        "author": "",
+        "inventory_quantity": 0,
+        "useful_courses_list": [
+          "Math"
+        ]
+      },
+      "#99": {
+        "name": "OmriTest",
+        "author": "omri",
+        "inventory_quantity": 5,
+        "useful_courses_list": [
+          "Physics",
+          "Math",
+          "English"
+        ]
+      },
+      "#56": {
+        "name": "asd",
+        "author": "asdf",
+        "inventory_quantity": 5,
+        "useful_courses_list": [
+          "Math",
+          "English"
+        ]
+      }
+    },
+    "Physics": {
+      "#6": {
+        "name": "Physics 1",
+        "author": "Albert",
+        "inventory_quantity": 6
+      },
+      "#7": {
+        "name": "Physics 2",
+        "author": "Albert",
+        "inventory_quantity": 16
+      },
+      "#8": {
+        "name": "Physics 3",
+        "author": "Albert",
+        "inventory_quantity": 7
+      },
+      "#99": {
+        "name": "OmriTest",
+        "author": "omri",
+        "inventory_quantity": 5,
+        "useful_courses_list": [
+          "Physics",
+          "Math",
+          "English"
+        ]
+      }
+    },
+    "English": {
+      "#9": {
+        "name": "Advanced A",
+        "author": "Debi",
+        "inventory_quantity": 4
+      },
+      "#10": {
+        "name": "Advanced B",
+        "author": "Alexa",
+        "inventory_quantity": 9
+      },
+      "#11": {
+        "name": "Advanced C",
+        "author": "Alexa",
+        "inventory_quantity": 6
+      },
+      "#99": {
+        "name": "OmriTest",
+        "author": "omri",
+        "inventory_quantity": 5,
+        "useful_courses_list": [
+          "Physics",
+          "Math",
+          "English"
+        ]
+      },
+      "#56": {
+        "name": "asd",
+        "author": "asdf",
+        "inventory_quantity": 5,
+        "useful_courses_list": [
+          "Math",
+          "English"
+        ]
+      }
+    }
+  },
+  "Courses": {
+    "Algorithm": {
+      "serial_course_number": 123,
+      "lecturer_num": 13
+    },
+    "Math": {
+      "serial_course_number": 124,
+      "lecturer_num": 13
+    },
+    "Physics": {
+      "serial_course_number": 343,
+      "lecturer_num": 13
+    },
+    "English": {
+      "serial_course_number": 321,
+      "lecturer_num": 13
+    }
+  }
+}
