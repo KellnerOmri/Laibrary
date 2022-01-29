@@ -6,6 +6,5 @@ class Person(object):
         self.date = ""
         self.password = ""
         self.nick_name = ""
+        self.book_list={}
 
-    # def create_person(id, first_name, last_name, date, password, nick_name):
-    #     person = Person()

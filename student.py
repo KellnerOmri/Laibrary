@@ -7,8 +7,10 @@ import json
 class Student(Person):
     def __init__(self):
         self.register_course_list = ["Math"]
+        self.book_list = {}
 
-    def add_student_to_list(person, register_course_list=["Math"],):
+
+    def add_student_to_list(person, register_course_list=["Math"],book_list={}):
         main_dictionary_path = open('main_dictionary.json')
         main_dictionary_json = json.load(main_dictionary_path)
         student = Student()

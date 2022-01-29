@@ -100,35 +100,29 @@ def add_book_screen():
     author_name = StringVar()
     inventory_quantity = IntVar()
 
-    # row 0
     Label(add_books_screen, text="Please enter book's details", height="2").place(x=20, y=5)
 
-    # row 1
-    empty_row(1)
-    # row 2
-    Label(add_books_screen, text="book name :", height='2').grid(row=2, column=0)
-    Entry(add_books_screen, textvariable=book_name).grid(row=2, column=1)
-    Label(add_books_screen, text="", height='2', width='30').grid(row=2, column=2)
-    # row4
-    Label(add_books_screen, text="  Serial Number :", height='2').grid(row=4, column=0)
-    Entry(add_books_screen, textvariable=serial_num).grid(row=4, column=1)
+    Label(add_books_screen, text="book name :").place(x=20, y=40)
+    Entry(add_books_screen, textvariable=book_name).place(x=160, y=40)
 
-    # row 6
-    Label(add_books_screen, text="Author :", height='2').grid(row=6, column=0)
-    Entry(add_books_screen, textvariable=author_name).grid(row=6, column=1)
+    Label(add_books_screen, text="  Serial Number :").place(x=20, y=70)
+    Entry(add_books_screen, textvariable=serial_num).place(x=160, y=70)
 
-    # row 8
-    Label(add_books_screen, text="Inventory quantity:", height='2').grid(row=8, column=0)
-    Entry(add_books_screen, textvariable=inventory_quantity).grid(row=8, column=1)
+    Label(add_books_screen, text="Author :").place(x=20, y=100)
+    Entry(add_books_screen, textvariable=author_name).place(x=160, y=100)
+
+    Label(add_books_screen, text="Inventory quantity:").place(x=20, y=130)
+    Entry(add_books_screen, textvariable=inventory_quantity).place(x=160, y=130)
 
     # checkbox
-    place_x = 100
+    Label(add_books_screen, text="Select courses that will use this book from the list:").place(x=20, y=180)
+    place_x = 20
     course_list = dict()
     for course in main_dictionary_json["Courses"]:
-        place_x += 90
         course_list[course] = IntVar()
         chk = Checkbutton(add_books_screen, text=f'{course}', variable=course_list[course])
         chk.place(x=place_x, y=200)
+        place_x += 90
 
     Button(add_books_screen, text="submit", height='2', width='30',
            command=lambda: add_book(serial_num.get(), book_name.get(), author_name.get(),
@@ -189,8 +183,6 @@ def login():
 
 
 def design_menu_screen():
-    # dictionary_users_path = open('main_dictionary.json')
-    # dictionary_users = json.load(dictionary_users_path)
     # row 0
     Label(text="", height='2', width='30').grid(row=0, column=0)
     Label(text=f"Welcome {username_verify.get()} To Our Library Program", background='yellow',
@@ -204,7 +196,8 @@ def design_menu_screen():
     # row 2
     Button(text="Order Book", font=("Helvetica", 14), height='2', width=17, bg="orange", command=login).grid(row=2,
                                                                                                              column=0)
-    Button(text="Search For Book", font=("Helvetica", 14), height='2', width=17, bg="green").grid(
+    Button(text="Search For Book", font=("Helvetica", 14), height='2', width=17, bg="green",
+           command=search_for_book).grid(
         row=2, column=1)
     Button(text="My Profile", font=("Helvetica", 14), height='2', width=17, bg="blue", command=my_profile_screen).grid(
         row=2, column=2)
@@ -243,6 +236,39 @@ def empty_row(row):
     Label(text="", height='2', width='30').grid(row=row, column=0)
     Label(text="", height='2', width='30').grid(row=row, column=1)
     Label(text="", height='2', width='30').grid(row=row, column=2)
+
+
+def search_for_book():
+    global search_book_screen
+    search_book_screen = Toplevel(menu_screen)
+    search_book_screen.geometry("500x600")
+    search_book_screen.title("Search Book")
+    Label(search_book_screen, text=f"Hi {username_verify.get()}! , Enter witch book whould you like to get ").place(
+        x=10, y=20)
+    search_by_name = Entry(search_book_screen, width=70, textvariable=username_verify)
+    search_by_name.place(x=10, y=50)
+
+    Label(search_book_screen, text="Choose course for filter").place(x=10, y=90)
+    place_x = 20
+    selected_course = StringVar()
+    for course in main_dictionary_json["Courses"]:
+        rb = Radiobutton(search_book_screen, text=f"{course}", value=f"{course}", variable=selected_course)
+        rb.place(x=place_x, y=110)
+        place_x += 90
+
+    Button(search_book_screen, text="Search ", height='2', width='30', bg="blue",
+           command=lambda: get_books_list_by_course_filter(selected_course.get())).place(x=20, y=400)
+
+
+def get_books_list_by_course_filter(selected_course):
+    book_list_filter = Book.get_books_list_by_course_filter(selected_course)
+    place_y = 160
+    for book in book_list_filter:
+        Button(search_book_screen,
+               text=f"Serial Number : {book} ,Book Name: {book_list_filter[book]['name']} "
+                    f",Author: {book_list_filter[book]['author']}, "
+                    f"Inventory: {book_list_filter[book]['inventory_quantity']}", command=lambda:Book.get_book(username_verify.get(),book)).place(x=10, y=place_y)
+        place_y += 30
 
 
 def my_profile_screen():
