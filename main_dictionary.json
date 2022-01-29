@@ -155,6 +155,54 @@
       "password": "12345",
       "date": "03.03.1994",
       "is_student": true
+    },
+    "TestWithDetails": {
+      "student_id": 3,
+      "register_course_list": [
+        "Math",
+        "English"
+      ],
+      "id": "32",
+      "first_name": "Omrid",
+      "last_name": "",
+      "password": "1234",
+      "date": "dsafd",
+      "is_student": true
+    },
+    "testnewone": {
+      "register_course_list": [
+        "Math",
+        "English"
+      ],
+      "id": "sadf",
+      "first_name": "sadf",
+      "last_name": "",
+      "password": "sdfa",
+      "date": "sadf",
+      "is_student": true
+    },
+    "isStudent": {
+      "register_course_list": [
+        "Math",
+        "English"
+      ],
+      "id": "isStudent",
+      "first_name": "isStudent",
+      "last_name": "",
+      "password": "isStudent",
+      "date": "isStudent"
+    },
+    "TestAllDDetails": {
+      "register_course_list": [
+        "Algorithm",
+        "English"
+      ],
+      "id": "23423",
+      "first_name": "Omri",
+      "last_name": "test2",
+      "password": "1234",
+      "date": "safd2",
+      "is_student": true
     }
   },
   "Books": {
@@ -229,6 +277,15 @@
           "Math",
           "English"
         ]
+      },
+      "3": {
+        "name": "MathAndPHysics",
+        "author": "sadfsafd",
+        "inventory_quantity": 4,
+        "useful_courses_list": [
+          "Math",
+          "Physics"
+        ]
       }
     },
     "Physics": {
@@ -255,6 +312,15 @@
           "Physics",
           "Math",
           "English"
+        ]
+      },
+      "3": {
+        "name": "MathAndPHysics",
+        "author": "sadfsafd",
+        "inventory_quantity": 4,
+        "useful_courses_list": [
+          "Math",
+          "Physics"
         ]
       }
     },

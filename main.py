@@ -1,47 +1,93 @@
 from tkinter import *
+
+import person
+from person import Person
 from student import Student
 from book import Book
 from PIL import ImageTk, Image
 import json
 
 
-def register_user():
-    username_info = username.get()
-    password_info = password.get()
+def register_user(register_person, register_course_list, is_student):
+    username_info = register_person.nick_name.get()
     if username_info in main_dictionary_json['Users']:
         Label(register_screen, text="User already exist", font="green", height='2', width='30').pack()
         return False
-    Student.add_student_to_list(username_info, username_info, username_info, password_info, id=1234, student_id=4,
-                                date="03.03.1994")
+
+    if is_student.get():
+        Student.add_student_to_list(register_person, get_useful_courses_list(register_course_list))
+
     Button(register_screen, text=f"registration success!", font="green", height='2', width='30').pack()
 
 
 def register_user_screen():
     global register_screen
     register_screen = Toplevel(welcome_screen)
-    register_screen.geometry("350x250")
+    register_screen.geometry("350x450")
     register_screen.title("Register")
     global username
     global password
     global username_entry
     global password_entry
+    register_person = Person()
     username = StringVar()
     password = StringVar()
-    Label(register_screen, text="please enter the given given information", height="2", width="30")
-    Label(register_screen, text="", height='2', width='30').pack()
-    Label(register_screen, text="username * ", height='2', width='30').pack()
+
+    # init person
+    register_person.id = StringVar()
+    register_person.first_name = StringVar()
+    register_person.last_name = StringVar()
+    register_person.date = StringVar()
+    register_person.nick_name = username
+    register_person.password = password
+    is_student = BooleanVar()
+
+    Label(register_screen, text="Please enter the given given information", height="2", width="30").place(x=60, y=10)
+    Label(register_screen, text="Username : ", width='30').place(x=10, y=50)
     username_entry = Entry(register_screen, textvariable=username)
-    username_entry.pack()
-    Label(register_screen, text="password *", height='2', width='30').pack()
+    username_entry.place(x=160, y=50)
+    Label(register_screen, text="Password : ", width='30').place(x=10, y=80)
     password_entry = Entry(register_screen, textvariable=password)
-    password_entry.pack()
-    Label(register_screen, text="", height='2', width='30').pack()
-    Button(register_screen, text="submit", height='2', width='30', command=register_user).pack()
+    password_entry.place(x=160, y=80)
+
+    Label(register_screen, text="ID : ", width='30').place(x=10, y=110)
+    id_entry = Entry(register_screen, textvariable=register_person.id)
+    id_entry.place(x=160, y=110)
+
+    Label(register_screen, text="First Name : ", width='30').place(x=10, y=140)
+    first_name_entry = Entry(register_screen, textvariable=register_person.first_name)
+    first_name_entry.place(x=160, y=140)
+
+    Label(register_screen, text="Last Name : ", width='30').place(x=10, y=170)
+    last_name_entry = Entry(register_screen, textvariable=register_person.last_name)
+    last_name_entry.place(x=160, y=170)
+
+    Label(register_screen, text="Date of birth : ", width='30').place(x=10, y=170)
+    date_entry = Entry(register_screen, textvariable=register_person.date)
+    date_entry.place(x=160, y=170)
+
+    r1 = Radiobutton(register_screen, text='Student', value=True, variable=is_student)
+    r1.place(x=30, y=200)
+    r2 = Radiobutton(register_screen, text='Lecturer', value=False, variable=is_student)
+    r2.place(x=160, y=200)
+
+    Label(register_screen, text="Select witch courses would you like to register : ").place(x=30, y=240)
+    place_y = 240
+    register_course_list = dict()
+    for course in main_dictionary_json["Courses"]:
+        place_y += 30
+        register_course_list[course] = IntVar()
+        chk = Checkbutton(register_screen, text=f'{course}', variable=register_course_list[course])
+        chk.place(x=30, y=place_y)
+
+    Button(register_screen, text="submit", width='30',
+           command=lambda: register_user(register_person, register_course_list, is_student)).place(x=60,
+                                                                                                   y=place_y + 50)
 
 
 def add_book(serial_num, book_name, author_name, inventory_quantity, useful_courses_list):
     Book.add_book_to_list(serial_num, book_name, author_name, inventory_quantity, useful_courses_list)
-    Label(add_books_screen, text=f"registration success!", width=30, height='2').place(x=210,y=360)
+    Label(add_books_screen, text=f"registration success!", width=30, height='2').place(x=210, y=360)
 
 
 def add_book_screen():
@@ -55,9 +101,7 @@ def add_book_screen():
     inventory_quantity = IntVar()
 
     # row 0
-    Label(add_books_screen, text="", height='2', width='30').grid(row=0, column=0)
-    Label(add_books_screen, text="Please enter book's details", height="2").grid(row=0, column=1)
-    Label(add_books_screen, text="", height='2', width='30').grid(row=0, column=2)
+    Label(add_books_screen, text="Please enter book's details", height="2").place(x=20, y=5)
 
     # row 1
     empty_row(1)
@@ -78,30 +122,28 @@ def add_book_screen():
     Entry(add_books_screen, textvariable=inventory_quantity).grid(row=8, column=1)
 
     # checkbox
-    v1 = IntVar()
-    v2 = IntVar()
-    v3 = IntVar()
-    v4 = IntVar()
-    Checkbutton(add_books_screen, text="Algorithm", variable=v1).place(x=100, y=200)
-    Checkbutton(add_books_screen, text="Physics", variable=v2).place(x=190, y=200)
-    Checkbutton(add_books_screen, text="Math", variable=v3).place(x=280, y=200)
-    Checkbutton(add_books_screen, text="English", variable=v4).place(x=370, y=200)
+    place_x = 100
+    course_list = dict()
+    for course in main_dictionary_json["Courses"]:
+        place_x += 90
+        course_list[course] = IntVar()
+        chk = Checkbutton(add_books_screen, text=f'{course}', variable=course_list[course])
+        chk.place(x=place_x, y=200)
 
     Button(add_books_screen, text="submit", height='2', width='30',
            command=lambda: add_book(serial_num.get(), book_name.get(), author_name.get(),
                                     inventory_quantity.get(),
-                                    get_useful_courses_list(v1.get(), v2.get(), v3.get(), v4.get()))).place(x=200,
-                                                                                                            y=300)
+                                    get_useful_courses_list(course_list))).place(x=200,
+                                                                                 y=300)
     Button(add_books_screen, text=f"Back to Menu", height='2',
            command=lambda: close_profile_window(add_books_screen)).place(x=500, y=350)
 
 
-def get_useful_courses_list(v1, v2, v3, v4):
+def get_useful_courses_list(course_list):
     useful_courses_list = []
-    set_useful_courses_list_by_value(useful_courses_list, v1, "Algorithm")
-    set_useful_courses_list_by_value(useful_courses_list, v2, "Physics")
-    set_useful_courses_list_by_value(useful_courses_list, v3, "Math")
-    set_useful_courses_list_by_value(useful_courses_list, v4, "English")
+    for course in course_list:
+        if course_list[course].get() == 1:
+            useful_courses_list.append(course)
     return useful_courses_list
 
 
@@ -109,8 +151,6 @@ def set_useful_courses_list_by_value(useful_courses_list, v, course):
     if (v == 1):
         useful_courses_list.append(course)
     return useful_courses_list
-
-
 
 
 def login_verify():
