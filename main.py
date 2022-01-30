@@ -183,59 +183,26 @@ def login():
 
 
 def design_menu_screen():
-    # row 0
-    Label(text="", height='2', width='30').grid(row=0, column=0)
     Label(text=f"Welcome {username_verify.get()} To Our Library Program", background='yellow',
-          font=("Helvetica", 14)).grid(row=0, column=1)
-    Label(text="", height='2', width='30').grid(row=0, column=2)
-    # row 1
-    Label(text="", height='2', width='30').grid(row=1, column=0)
-    Label(text="Lets have fun! ", font=("Helvetica", 11), height='2', width='30').grid(row=1, column=1)
-    Label(text=f"ID: {main_dictionary_json['Users'][username_verify.get()]['id']}", height='2', width='30').grid(row=1,
-                                                                                                                 column=2)
-    # row 2
-    Button(text="Order Book", font=("Helvetica", 14), height='2', width=17, bg="orange", command=login).grid(row=2,
-                                                                                                             column=0)
-    Button(text="Search For Book", font=("Helvetica", 14), height='2', width=17, bg="green",
-           command=search_for_book).grid(
-        row=2, column=1)
-    Button(text="My Profile", font=("Helvetica", 14), height='2', width=17, bg="blue", command=my_profile_screen).grid(
-        row=2, column=2)
-    # row 3
-    empty_row(3)
-    # row 4
-    empty_row(4)
-    # row 5
-    Button(text="Return Book", font=("Helvetica", 14), height='2', width='17', bg="green").grid(
-        row=5, column=0)
-    Button(text="Pay Fee", font=("Helvetica", 14), height='2', width='17', bg="green").grid(
-        row=5, column=1)
-    Button(text="Register to Course", font=("Helvetica", 14), height='2', width='17', bg="green").grid(row=5, column=2)
-    # row 6
-    empty_row(6)
-    # row 7
-    empty_row(7)
-    # row 8
-    Button(text="Add Book", font=("Helvetica", 14), height='2', width='17', bg="green", command=add_book_screen).grid(
-        row=8, column=0)
-    Button(text="Add Course", font=("Helvetica", 14), height='2', width='17', bg="green").grid(
-        row=8, column=1)
-    Button(text="Extending book loan", font=("Helvetica", 14), height='2', width='17', bg="green").grid(row=8, column=2)
-    # row 9
-    empty_row(9)
-    # row 10
-    empty_row(10)
-    # row 11
-    Label(text="", height='2', width='30').grid(row=11, column=0)
-    Label(text="", height='2', width='30').grid(row=11, column=1)
+          font=("Helvetica", 14)).place(x=250, y=20)
+    Button(text="Order Book", font=("Helvetica", 14), height='2', width='17', bg="orange",
+           command=search_for_book).place(x=120, y=70)
+
+    Button(text="Add Book", font=("Helvetica", 14), height='2', width='17', bg="green", command=add_book_screen).place(
+        x=460, y=70)
+    Button(text="Return Book", font=("Helvetica", 14), height='2', width='17', bg="green").place(x=120, y=150)
+    Button(text="Add Course", font=("Helvetica", 14), height='2', width='17', bg="green").place(x=460, y=150)
+
+    Button(text="Pay Fee", font=("Helvetica", 14), height='2', width='17', bg="green").place(x=120, y=230)
+
+    Button(text="Register to Course", font=("Helvetica", 14), height='2', width='17', bg="green").place(x=460, y=230)
+    Button(text="Extending book loan", font=("Helvetica", 14), height='2', width='17', bg="green").place(x=120, y=310)
+
+    Button(text="My Profile", font=("Helvetica", 14), height='2', width='17', bg="blue",
+           command=my_profile_screen).place(x=40, y=520)
+
     Button(text="Exit", font=("Helvetica", 14), height='2', width='17', bg="red",
-           command=exit).grid(row=12, column=2)
-
-
-def empty_row(row):
-    Label(text="", height='2', width='30').grid(row=row, column=0)
-    Label(text="", height='2', width='30').grid(row=row, column=1)
-    Label(text="", height='2', width='30').grid(row=row, column=2)
+           command=exit).place(x=540, y=520)
 
 
 def search_for_book():
@@ -267,7 +234,8 @@ def get_books_list_by_course_filter(selected_course):
         Button(search_book_screen,
                text=f"Serial Number : {book} ,Book Name: {book_list_filter[book]['name']} "
                     f",Author: {book_list_filter[book]['author']}, "
-                    f"Inventory: {book_list_filter[book]['inventory_quantity']}", command=lambda:Book.get_book(username_verify.get(),book)).place(x=10, y=place_y)
+                    f"Inventory: {book_list_filter[book]['inventory_quantity']}",
+               command=lambda: Book.get_book(username_verify.get(), book)).place(x=10, y=place_y)
         place_y += 30
 
 
@@ -276,38 +244,44 @@ def my_profile_screen():
     profile_screen = Toplevel(menu_screen)
     profile_screen.geometry("500x600")
     profile_screen.title("Profile")
-    photo = PhotoImage(file="C:\omri\year D\pythonProject\profile_image.png")
+    photo = PhotoImage(file=".\images\profile_image.png")
     photoimage = photo.subsample(3, 3)
     my_label = Label(profile_screen, image=photoimage)
     my_label.pack(pady=10)
 
-    Label(profile_screen, text=f"Hi {username_verify.get()}! ", height='2', width='30').pack()
-    Label(profile_screen, text=f"ID: {main_dictionary_json['Users'][username_verify.get()]['id']}", height='2',
-          width='30').pack()
+    Label(profile_screen, text=f"Hi {username_verify.get()}! ", width='30').pack()
+    Label(profile_screen, text=f"ID: {main_dictionary_json['Users'][username_verify.get()]['id']}",
+          width='30').place(x=140, y=240)
     Label(profile_screen, text=f"First Name: {main_dictionary_json['Users'][username_verify.get()]['first_name']}",
           height='2',
-          width='30').pack()
+          width='30').place(x=140, y=270)
     Label(profile_screen, text=f"Last Name: {main_dictionary_json['Users'][username_verify.get()]['last_name']}",
-          height='2',
-          width='30').pack()
+          width='30').place(x=140, y=300)
     Label(profile_screen, text=f"Date of birth : {main_dictionary_json['Users'][username_verify.get()]['date']}",
-          height='2',
-          width='30').pack()
+          width='30').place(x=140, y=330)
     Label(profile_screen, text=f"Password {main_dictionary_json['Users'][username_verify.get()]['password']}",
-          height='2',
-          width='30').pack()
-    if main_dictionary_json['Users'][username_verify.get()]['is_student']:
-        Label(profile_screen, text=f"Student at Ruppin", height='2', width='30').pack()
-        Label(profile_screen, fg='blue', text=f"My Courses:", height='2', width='30').pack()
-        for course in main_dictionary_json['Users'][username_verify.get()]['register_course_list']:
-            Label(profile_screen, text=f"{course}", height='2', width='30').pack()
+          width='30').place(x=140, y=360)
 
+    if main_dictionary_json['Users'][username_verify.get()]['is_student']:
+        Label(profile_screen, text=f"Student at Ruppin", width='30').place(x=140, y=390)
     else:
-        Label(profile_screen, text=f"lecturer at Ruppin", height='2', width='30').pack()
-    Label(profile_screen, text="", height='2', width='30').pack()
-    Label(profile_screen, text="", height='2', width='30').pack()
-    Button(profile_screen, text="Back to menu", height="2", bg='blue', width="30",
-           command=lambda: close_profile_window(profile_screen)).pack()
+        Label(profile_screen, text=f"lecturer at Ruppin", width='30').place(x=140, y=390)
+
+    place_x = 10
+    Label(profile_screen, fg='blue', text=f"My Courses:").place(x=10, y=420)
+    for course in main_dictionary_json['Users'][username_verify.get()]['register_course_list']:
+        Label(profile_screen, text=f"{course}").place(x=place_x, y=440)
+        place_x += 100
+    place_x = 10
+    Label(profile_screen, fg='blue', text=f"My Books:").place(x=10, y=470)
+    for book in main_dictionary_json['Users'][username_verify.get()]['book_list']:
+        Label(profile_screen,
+              text=f"{book} : {main_dictionary_json['Users'][username_verify.get()]['book_list'][book]['name']} ").place(
+            x=place_x, y=490)
+        place_x += 150
+
+    Button(profile_screen, text="Back to menu", bg='blue', width="30",
+           command=lambda: close_profile_window(profile_screen)).place(x=140, y=530)
     profile_screen.mainloop()
 
 
@@ -322,7 +296,7 @@ def main_screen():
     main_dictionary_json = json.load(main_dictionary_path)
     welcome_screen = Tk()
     welcome_screen.title("Menu")
-    welcome_screen.geometry("300x250")
+    welcome_screen.geometry("400x250")
     Label(text="Welcome To The Library Program").pack(pady=10)
     Label(text="", height='2', width='30')
     Button(text="Login ", height='2', width='30', bg="blue", command=login).pack()
@@ -332,7 +306,12 @@ def main_screen():
     global menu_screen
     menu_screen = Tk()
     menu_screen.title("Menu")
-    menu_screen.geometry("780x590")
+    menu_screen.geometry("780x620")
+    img = (Image.open(".\images\librery_image.png"))
+    resized_image = img.resize((800, 605), Image.ANTIALIAS)
+    new_image = ImageTk.PhotoImage(resized_image)
+    my_label = Label(menu_screen, image=new_image)
+    my_label.pack()
     design_menu_screen()
     menu_screen.mainloop()
 

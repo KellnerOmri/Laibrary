@@ -16,9 +16,16 @@
         "#65": {
           "name": "sdaffsafda",
           "author": "sadfasf",
-          "inventory_quantity": -6,
           "useful_courses_list": [
             "Math",
+            "Physics",
+            "English"
+          ]
+        },
+        "#25": {
+          "name": "HIBook",
+          "author": "dfgssf",
+          "useful_courses_list": [
             "Physics",
             "English"
           ]
@@ -259,7 +266,8 @@
       "inventory_quantity": 4,
       "useful_courses_list": [
         "Math"
-      ]
+      ],
+      "quantity_ordered": 0
     },
     "#24": {
       "name": "mojo",
@@ -267,17 +275,29 @@
       "inventory_quantity": 4,
       "useful_courses_list": [
         "Math"
-      ]
+      ],
+      "quantity_ordered": 0
     },
     "#65": {
       "name": "sdaffsafda",
       "author": "sadfasf",
-      "inventory_quantity": -7,
+      "inventory_quantity": 6,
       "useful_courses_list": [
         "Math",
         "Physics",
         "English"
-      ]
+      ],
+      "quantity_ordered": 1
+    },
+    "#25": {
+      "name": "HIBook",
+      "author": "dfgssf",
+      "inventory_quantity": 2,
+      "useful_courses_list": [
+        "Physics",
+        "English"
+      ],
+      "quantity_ordered": 1
     }
   },
   "Courses": {

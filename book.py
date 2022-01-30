@@ -1,3 +1,4 @@
+import copy
 import json
 
 
@@ -5,8 +6,9 @@ class Book(object):
     def __init__(self):
         self.name = ""
         self.author = ""
-        self.inventory_quantity = 0
+        self.inventory_quantity = 1
         self.useful_courses_list = []
+        self.quantity_ordered = 0
 
     def add_book_to_list(serial_num, name, author, inventory_quantity, useful_courses_list):
         main_dictionary_path = open('main_dictionary.json')
@@ -26,7 +28,12 @@ class Book(object):
         main_dictionary = json.load(main_dictionary_path)
 
         main_dictionary['Books'][serial_number_book]['inventory_quantity'] -= 1
-        main_dictionary['Users'][username]['book_list'][serial_number_book] = main_dictionary['Books'][serial_number_book]
+        main_dictionary['Books'][serial_number_book]['quantity_ordered'] += 1
+        book_dettails_for_user = copy.copy(main_dictionary['Books'][serial_number_book])
+
+        book_dettails_for_user.pop('inventory_quantity')
+        book_dettails_for_user.pop('quantity_ordered')
+        main_dictionary['Users'][username]['book_list'][serial_number_book] = book_dettails_for_user
 
         with open('main_dictionary.json', 'w') as outfile:
             json.dump(main_dictionary, outfile)
