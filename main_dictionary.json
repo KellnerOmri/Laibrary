@@ -1,7 +1,6 @@
 {
   "Users": {
     "Omri": {
-      "student_id": 4,
       "register_course_list": [
         "Math",
         "English"
@@ -29,11 +28,17 @@
             "Physics",
             "English"
           ]
+        },
+        "#24": {
+          "name": "mojo",
+          "author": "asdfsaf",
+          "useful_courses_list": [
+            "Math"
+          ]
         }
       }
     },
     "Lior": {
-      "student_id": 4,
       "register_course_list": [
         "Math",
         "English"
@@ -46,7 +51,6 @@
       "is_student": true
     },
     "Almog": {
-      "student_id": 4,
       "register_course_list": [
         "Math",
         "English"
@@ -59,7 +63,6 @@
       "is_student": true
     },
     "Yoram": {
-      "student_id": 4,
       "register_course_list": [
         "Math",
         "English"
@@ -72,7 +75,6 @@
       "is_student": true
     },
     "": {
-      "student_id": 4,
       "register_course_list": [
         "Math",
         "English"
@@ -82,10 +84,27 @@
       "last_name": "",
       "password": "",
       "date": "03.03.1994",
-      "is_student": true
+      "is_student": true,
+      "book_list": {
+        "#65": {
+          "name": "sdaffsafda",
+          "author": "sadfasf",
+          "useful_courses_list": [
+            "Math",
+            "Physics",
+            "English"
+          ]
+        },
+        "#23": {
+          "name": "mojo",
+          "author": "asdfsaf",
+          "useful_courses_list": [
+            "Math"
+          ]
+        }
+      }
     },
     "Almogg": {
-      "student_id": 4,
       "register_course_list": [
         "Math",
         "English"
@@ -98,7 +117,6 @@
       "is_student": true
     },
     "Almoggs": {
-      "student_id": 4,
       "register_course_list": [
         "Math",
         "English"
@@ -111,7 +129,6 @@
       "is_student": true
     },
     "Almoggsasdf": {
-      "student_id": 4,
       "register_course_list": [
         "Math",
         "English"
@@ -124,7 +141,6 @@
       "is_student": true
     },
     "sadf": {
-      "student_id": 4,
       "register_course_list": [
         "Math",
         "English"
@@ -137,7 +153,6 @@
       "is_student": true
     },
     "almog": {
-      "student_id": 4,
       "register_course_list": [
         "Math",
         "English"
@@ -150,7 +165,6 @@
       "is_student": true
     },
     "David": {
-      "student_id": 4,
       "register_course_list": [
         "Math",
         "English"
@@ -163,7 +177,6 @@
       "is_student": true
     },
     "Test": {
-      "student_id": 4,
       "register_course_list": [
         "Math",
         "English"
@@ -257,53 +270,91 @@
       "password": "1234",
       "date": "dsfgds",
       "is_student": true
+    },
+    "Lior2": {
+      "register_course_list": [
+        "Math",
+        "Physics"
+      ],
+      "book_list": {
+        "#65": {
+          "name": "sdaffsafda",
+          "author": "sadfasf",
+          "useful_courses_list": [
+            "Math",
+            "Physics",
+            "English"
+          ]
+        }
+      },
+      "id": "12342345",
+      "first_name": "Lior",
+      "last_name": "Sabri",
+      "password": "1234",
+      "date": "12/01/2019",
+      "is_student": true
+    },
+    "first_lecturer": {
+      "teach_course_list": [
+        "first_lecturfsader",
+        "first_lecturersa"
+      ],
+      "book_list": {},
+      "id": "1234",
+      "first_name": "lecturer",
+      "last_name": "lecturer",
+      "password": "1234",
+      "date": "31/11/1221",
+      "is_student": false
     }
   },
   "Books": {
     "#23": {
       "name": "mojo",
       "author": "asdfsaf",
-      "inventory_quantity": 4,
+      "inventory_quantity": 3,
       "useful_courses_list": [
         "Math"
       ],
-      "quantity_ordered": 0
+      "quantity_ordered": 1
     },
     "#24": {
       "name": "mojo",
       "author": "asdfsaf",
-      "inventory_quantity": 4,
+      "inventory_quantity": 3,
       "useful_courses_list": [
         "Math"
       ],
-      "quantity_ordered": 0
+      "quantity_ordered": 1
     },
     "#65": {
       "name": "sdaffsafda",
       "author": "sadfasf",
-      "inventory_quantity": 6,
+      "inventory_quantity": -7,
       "useful_courses_list": [
         "Math",
         "Physics",
         "English"
       ],
-      "quantity_ordered": 1
+      "quantity_ordered": 14
     },
     "#25": {
       "name": "HIBook",
       "author": "dfgssf",
-      "inventory_quantity": 2,
+      "inventory_quantity": -8,
       "useful_courses_list": [
         "Physics",
         "English"
       ],
-      "quantity_ordered": 1
+      "quantity_ordered": 11
     }
   },
   "Courses": {
     "Algorithm": {
-      "serial_course_number": 123,
-      "lecturer_num": 13
+      "lecturer_id": 13,
+      "student_list": [],
+      "hour_per_week": 0,
+      "university_points": 1
     },
     "Math": {
       "serial_course_number": 124,
@@ -316,6 +367,74 @@
     "English": {
       "serial_course_number": 321,
       "lecturer_num": 13
+    },
+    "math2": {
+      "lecturer": {
+        "register_course_list": [
+          "Math",
+          "English"
+        ],
+        "id": 1234,
+        "first_name": "",
+        "last_name": "",
+        "password": "",
+        "date": "03.03.1994",
+        "is_student": true,
+        "book_list": {
+          "#65": {
+            "name": "sdaffsafda",
+            "author": "sadfasf",
+            "useful_courses_list": [
+              "Math",
+              "Physics",
+              "English"
+            ]
+          },
+          "#23": {
+            "name": "mojo",
+            "author": "asdfsaf",
+            "useful_courses_list": [
+              "Math"
+            ]
+          }
+        }
+      },
+      "student_list": [],
+      "weekly_hours": 3,
+      "university_points": 2
+    },
+    "first_lecturfsader": {
+      "lecturer": {
+        "teach_course_list": [],
+        "book_list": {},
+        "id": "1234",
+        "first_name": "lecturer",
+        "last_name": "lecturer",
+        "password": "1234",
+        "date": "31/11/1221",
+        "is_student": false
+      },
+      "student_list": [],
+      "weekly_hours": 3,
+      "university_points": 2
+    },
+    "first_lecturersa": {
+      "lecturer": {
+        "teach_course_list": [
+          "first_lecturfsader",
+          "first_lecturersa"
+        ],
+        "book_list": {},
+        "id": "1234",
+        "first_name": "lecturer",
+        "last_name": "lecturer",
+        "password": "1234",
+        "date": "31/11/1221",
+        "is_student": false
+      },
+      "student_list": [],
+      "weekly_hours": 3,
+      "university_points": 1
     }
   }
 }

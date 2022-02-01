@@ -10,7 +10,7 @@ class Student(Person):
         self.book_list = {}
 
 
-    def add_student_to_list(person, register_course_list=["Math"],book_list={}):
+    def add_student_to_list(person, register_course_list=["Math"]):
         main_dictionary_path = open('main_dictionary.json')
         main_dictionary_json = json.load(main_dictionary_path)
         student = Student()

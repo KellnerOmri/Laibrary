@@ -38,12 +38,26 @@ class Book(object):
         with open('main_dictionary.json', 'w') as outfile:
             json.dump(main_dictionary, outfile)
 
-    def get_books_list_by_course_filter(course):
-        book_list_filter=dict()
+    def get_books_list_by_course_filter(course, author_name):
+        book_list_filter = dict()
         main_dictionary_path = open('main_dictionary.json')
         main_dictionary = json.load(main_dictionary_path)
-        for serial_number_book in main_dictionary["Books"]:
-            if course in main_dictionary["Books"][serial_number_book]['useful_courses_list']:
+        if course == "All":
+            for serial_number_book in main_dictionary["Books"]:
                 book_list_filter[serial_number_book] = main_dictionary["Books"][serial_number_book]
-
+        else:
+            for serial_number_book in main_dictionary["Books"]:
+                if course in main_dictionary["Books"][serial_number_book]['useful_courses_list']:
+                    book_list_filter[serial_number_book] = main_dictionary["Books"][serial_number_book]
+        book_list_filter = get_books_list_by_author_filter(book_list_filter, author_name)
         return book_list_filter
+
+
+def get_books_list_by_author_filter(book_list_filter, author_name):
+    temp_book_list = dict()
+    if author_name != '':
+        for book_serial_number in book_list_filter:
+            if author_name == book_list_filter[book_serial_number]['author']:
+                temp_book_list[book_serial_number] = book_list_filter[book_serial_number]
+        return temp_book_list
+    return book_list_filter
