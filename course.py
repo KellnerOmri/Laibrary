@@ -25,3 +25,19 @@ class Course(object):
 
         with open('main_dictionary.json', 'w') as outfile:
             json.dump(main_dictionary, outfile)
+
+
+    def register_to_course(register_course_list,remove_course_list,username):
+        main_dictionary_path = open('main_dictionary.json')
+        main_dictionary = json.load(main_dictionary_path)
+        for course in register_course_list:
+            main_dictionary["Users"][username]["register_course_list"].append(course)
+            main_dictionary["Courses"][course]["student_list"].append(username)
+
+        for course in remove_course_list:
+            main_dictionary["Users"][username]["register_course_list"].remove(course)
+            main_dictionary["Courses"][course]["student_list"].remove(username)
+
+
+        with open('main_dictionary.json', 'w') as outfile:
+            json.dump(main_dictionary, outfile)
