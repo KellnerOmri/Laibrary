@@ -1,0 +1,394 @@
+{
+  "Users": {
+    "Omri": {
+      "register_course_list": [
+        "Math"
+      ],
+      "id": 1234,
+      "first_name": "Omri",
+      "last_name": "Kellner",
+      "password": "1234",
+      "date": "03.03.1994",
+      "is_student": true,
+      "book_list": {
+        "#65": {
+          "name": "sdaffsafda",
+          "author": "sadfasf",
+          "useful_courses_list": [
+            "Math",
+            "Physics",
+            "English"
+          ],
+          "order_date": "22-02-03",
+          "return_date": "22-02-10"
+        }
+      }
+    },
+    "": {
+      "register_course_list": [
+        "Math",
+        "Physics"
+      ],
+      "id": 1234,
+      "first_name": "",
+      "last_name": "",
+      "password": "",
+      "date": "03.03.1994",
+      "is_student": true,
+      "book_list": {
+        "#65": {
+          "name": "sdaffsafda",
+          "author": "sadfasf",
+          "useful_courses_list": [
+            "Math",
+            "Physics",
+            "English"
+          ],
+          "order_date": "22-02-03",
+          "return_date": "22-02-10"
+        }
+      },
+      "fee": 10
+    },
+    "first_lecturer": {
+      "teach_course_list": [
+        "Math",
+        "Physics",
+        "English"
+      ],
+      "book_list": {
+        "#23": {
+          "name": "mojo",
+          "author": "asdfsaf",
+          "inventory_quantity": 3,
+          "useful_courses_list": [
+            "Math"
+          ],
+          "order_date": "22-02-03",
+          "return_date": "22-02-10",
+          "quantity_ordered": 1
+        }
+      },
+      "id": 1234,
+      "first_name": "first",
+      "last_name": "lecturer",
+      "password": "1234",
+      "date": "31/11/1221",
+      "is_student": false
+    },
+    "test": {
+      "register_course_list": [
+        "Physics",
+        "English"
+      ],
+      "book_list": {},
+      "id": "1234",
+      "first_name": "test",
+      "last_name": "test",
+      "password": "1234",
+      "date": "1/1/1",
+      "is_student": true
+    },
+    "test1": {
+      "register_course_list": [
+        "Physics",
+        "English"
+      ],
+      "book_list": {},
+      "id": "1234",
+      "first_name": "test1",
+      "last_name": "test1",
+      "password": "1234",
+      "date": "1/1/1",
+      "is_student": true
+    },
+    "test2": {
+      "register_course_list": [
+        "Physics"
+      ],
+      "book_list": {},
+      "id": "1234",
+      "first_name": "test2",
+      "last_name": "test2",
+      "password": "1234",
+      "date": "1/1/1",
+      "is_student": true
+    },
+    "test3": {
+      "register_course_list": [
+        "Physics"
+      ],
+      "book_list": {},
+      "id": "1234",
+      "first_name": "test3",
+      "last_name": "test3",
+      "password": "test3",
+      "date": "1/1/1",
+      "is_student": true
+    },
+    "test4": {
+      "register_course_list": [
+        "Physics"
+      ],
+      "book_list": {},
+      "id": "1234",
+      "first_name": "test4",
+      "last_name": "test4",
+      "password": "1234",
+      "date": "1/1/1",
+      "is_student": true
+    },
+    "test5": {
+      "register_course_list": [
+        "English"
+      ],
+      "book_list": {},
+      "id": "1234",
+      "first_name": "test5",
+      "last_name": "test5",
+      "password": "1234",
+      "date": "1/1/1",
+      "is_student": true
+    },
+    "test6": {
+      "register_course_list": [
+        "Physics",
+        "English"
+      ],
+      "book_list": {},
+      "id": "1234",
+      "first_name": "test6",
+      "last_name": "test6",
+      "password": "1234",
+      "date": "1/1/1",
+      "is_student": true
+    },
+    "test7": {
+      "register_course_list": [
+        "Math",
+        "English"
+      ],
+      "book_list": {
+        "#24": {
+          "name": "mojo",
+          "author": "asdfsaf",
+          "useful_courses_list": [
+            "Math"
+          ],
+          "order_date": "22-02-03",
+          "return_date": "22-02-10"
+        },
+        "#65": {
+          "name": "sdaffsafda",
+          "author": "sadfasf",
+          "useful_courses_list": [
+            "Math",
+            "Physics",
+            "English"
+          ],
+          "order_date": "22-02-03",
+          "return_date": "22-02-10"
+        }
+      },
+      "id": "1234",
+      "first_name": "test7",
+      "last_name": "test7",
+      "password": "1234",
+      "date": "1/1/1",
+      "is_student": true
+    },
+    "test8": {
+      "register_course_list": [
+        "Math"
+      ],
+      "book_list": {},
+      "id": "1234",
+      "first_name": "test8",
+      "last_name": "test8",
+      "password": "1234",
+      "date": "1/1/1",
+      "is_student": true
+    },
+    "test10": {
+      "teach_course_list": [],
+      "book_list": {},
+      "id": "1",
+      "first_name": "test10",
+      "last_name": "test10",
+      "password": "1234",
+      "date": "1/1/1",
+      "is_student": false
+    }
+  },
+  "Books": {
+    "#23": {
+      "name": "mojo",
+      "author": "asdfsaf",
+      "inventory_quantity": 10,
+      "useful_courses_list": [
+        "Math"
+      ],
+      "quantity_ordered": 5
+    },
+    "#24": {
+      "name": "mojo",
+      "author": "asdfsaf",
+      "inventory_quantity": 6,
+      "useful_courses_list": [
+        "Math"
+      ],
+      "quantity_ordered": 9
+    },
+    "#65": {
+      "name": "sdaffsafda",
+      "author": "sadfasf",
+      "inventory_quantity": 12,
+      "useful_courses_list": [
+        "Math",
+        "Physics",
+        "English"
+      ],
+      "quantity_ordered": 3
+    },
+    "#25": {
+      "name": "HIBook",
+      "author": "dfgssf",
+      "inventory_quantity": 14,
+      "useful_courses_list": [
+        "Physics",
+        "English"
+      ],
+      "quantity_ordered": 1
+    }
+  },
+  "Courses": {
+    "Math": {
+      "lecturer": {
+        "register_course_list": [
+          "Math",
+          "Physics",
+          "English"
+        ],
+        "id": 1234,
+        "first_name": "",
+        "last_name": "",
+        "password": "",
+        "date": "03.03.1994",
+        "is_student": true,
+        "book_list": {
+          "#65": {
+            "name": "sdaffsafda",
+            "author": "sadfasf",
+            "useful_courses_list": [
+              "Math",
+              "Physics",
+              "English"
+            ],
+            "order_date": "22-02-03",
+            "return_date": "22-02-10"
+          },
+          "#23": {
+            "name": "mojo",
+            "author": "asdfsaf",
+            "useful_courses_list": [
+              "Math"
+            ]
+          }
+        }
+      },
+      "student_list": [
+        "Omri",
+        ""
+      ],
+      "hour_per_week": 3,
+      "university_points": 2
+    },
+    "Physics": {
+      "lecturer": {
+        "register_course_list": [
+          "Math",
+          "Physics",
+          "English"
+        ],
+        "id": 1234,
+        "first_name": "",
+        "last_name": "",
+        "password": "",
+        "date": "03.03.1994",
+        "is_student": true,
+        "book_list": {
+          "#65": {
+            "name": "sdaffsafda",
+            "author": "sadfasf",
+            "useful_courses_list": [
+              "Math",
+              "Physics",
+              "English"
+            ],
+            "order_date": "22-02-03",
+            "return_date": "22-02-10"
+          },
+          "#23": {
+            "name": "mojo",
+            "author": "asdfsaf",
+            "useful_courses_list": [
+              "Math"
+            ]
+          }
+        }
+      },
+      "student_list": [
+        ""
+      ],
+      "weekly_hours": 3,
+      "university_points": 2
+    },
+    "English": {
+      "lecturer": {
+        "register_course_list": [
+          "Math",
+          "Physics",
+          "English"
+        ],
+        "id": 1234,
+        "first_name": "",
+        "last_name": "",
+        "password": "",
+        "date": "03.03.1994",
+        "is_student": true,
+        "book_list": {
+          "#65": {
+            "name": "sdaffsafda",
+            "author": "sadfasf",
+            "useful_courses_list": [
+              "Math",
+              "Physics",
+              "English"
+            ],
+            "order_date": "22-02-03",
+            "return_date": "22-02-10"
+          },
+          "#23": {
+            "name": "mojo",
+            "author": "asdfsaf",
+            "useful_courses_list": [
+              "Math"
+            ],
+            "order_date": "22-02-03",
+            "return_date": "22-02-10"
+          }
+        }
+      },
+      "student_list": [],
+      "weekly_hours": 3,
+      "university_points": 2
+    }
+  },
+  "Orders": {
+    "": {
+      "order_date": "22-02-03",
+      "return_date": "22-02-10",
+      "book_serial_number": "#24"
+    }
+  }
+}
