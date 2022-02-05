@@ -82,7 +82,7 @@ class Book(object):
         return_date_str = main_dictionary['Users'][username]['book_list'][serial_number_book]['return_date']
         return_date_obj = datetime.strptime(return_date_str, '%y-%m-%d').date()
 
-        return_date_str = (return_date_obj + datetime2.timedelta(days=7)).date().strftime('%y-%m-%d')
+        return_date_str = (return_date_obj + datetime2.timedelta(days=7)).strftime('%y-%m-%d')
         main_dictionary['Users'][username]['book_list'][serial_number_book]['return_date'] = return_date_str
 
         with open('main_dictionary.json', 'w') as outfile:

@@ -82,13 +82,7 @@ def register_user_screen():
                                                                                                    y=place_y + 50)
 
 
-def add_book(serial_num, book_name, author_name, inventory_quantity, useful_courses_list):
-    Book.add_book_to_list(serial_num, book_name, author_name, inventory_quantity, useful_courses_list)
-    Label(add_books_screen, text=f"registration success!", width=30, height='2').place(x=210, y=360)
-
-
 def add_book_screen():
-    global add_books_screen
     add_books_screen = Toplevel(menu_screen)
     init_screen_setting(add_books_screen, "780x620", "Add Book To Library")
 
@@ -106,7 +100,7 @@ def add_book_screen():
     Label(add_books_screen, text="book name :").place(x=20, y=190)
     Entry(add_books_screen, textvariable=book_name).place(x=160, y=190)
 
-    Label(add_books_screen, text="  Serial Number :").place(x=20, y=220)
+    Label(add_books_screen, text="Serial Number :").place(x=20, y=220)
     Entry(add_books_screen, textvariable=serial_num).place(x=160, y=220)
 
     Label(add_books_screen, text="Author :").place(x=20, y=250)
@@ -131,6 +125,10 @@ def add_book_screen():
                                     get_useful_courses_list(course_list))).place(x=300, y=500)
     back_to_menu(add_books_screen)
 
+    def add_book(serial_num, book_name, author_name, inventory_quantity, useful_courses_list):
+        Book.add_book_to_list(serial_num, book_name, author_name, inventory_quantity, useful_courses_list)
+        Label(add_books_screen, text=f"registration success!", width=30, height='2').place(x=210, y=360)
+
 
 def back_to_menu(screen_name):
     img = (Image.open(r".\images\back_to_menu_image.png"))
@@ -145,7 +143,6 @@ def back_to_menu(screen_name):
 class return_book_screen():
     def __init__(self):
         main_dictionary_json = json.load(open('main_dictionary.json'))
-        global return_book_screen
         return_book_screen = Toplevel(menu_screen)
         init_screen_setting(return_book_screen, "780x620", "Return Book To Library")
 
@@ -172,29 +169,34 @@ class return_book_screen():
         back_to_menu(return_book_screen)
 
 
-def extending_loan_screen():
-    global extending_loan_screen
-    extending_loan_screen = Toplevel(menu_screen)
-    init_screen_setting(extending_loan_screen, "780x620", "Extending loan book request")
+class extending_loan_screen():
+    def __init__(self):
+        main_dictionary_json = json.load(open('main_dictionary.json'))
 
-    Label(extending_loan_screen, anchor="center", font=("Helvetica", 14), bg='yellow',
-          text="Select book for extending loan time").place(x=200, y=20)
-    extending_book_loan_image = ImageTk.PhotoImage(
-        (Image.open(r".\images\extending_book_loan_image.png")).resize((70, 70), Image.ANTIALIAS))
-    Label(extending_loan_screen, image=extending_book_loan_image).place(x=20, y=20)
-    place_y = 100
-    book_list = main_dictionary_json["Users"][username_verify.get()]["book_list"]
-    for serial_number_book in book_list:
-        Button(extending_loan_screen,
-               text=f"Serial Number : {serial_number_book} ,Book Name: {book_list[serial_number_book]['name']} "
-                    f",Author: {book_list[serial_number_book]['author']}, Untill Date : {book_list[serial_number_book]['return_date']}",
-               command=lambda serial_number_book=serial_number_book: Book.Extending_loan(username_verify.get(),
-                                                                                         serial_number_book)).place(
-            x=150, y=place_y)
-        place_y += 30
-    back_to_menu(extending_loan_screen)
-    # Button(extending_loan_screen, text=f"Back to Menu", height='2',
-    #        command=lambda: close_profile_window(extending_loan_screen)).place(x=500, y=550)
+        extending_loan_screen = Toplevel(menu_screen)
+        init_screen_setting(extending_loan_screen, "780x620", "Extending loan book request")
+
+        Label(extending_loan_screen, anchor="center", font=("Helvetica", 14), bg='yellow',
+              text="Select book for extending loan time").place(x=200, y=20)
+        extending_book_loan_image = ImageTk.PhotoImage(
+            (Image.open(r".\images\extending_book_loan_image.png")).resize((70, 70), Image.ANTIALIAS))
+        Label(extending_loan_screen, image=extending_book_loan_image).place(x=20, y=20)
+
+        Label(extending_loan_screen, text="Add a week to the loan time for each book clicked", font=("Helvetica", 10),
+              fg='green').place(x=150, y=70)
+        place_y = 100
+        book_list = main_dictionary_json["Users"][username_verify.get()]["book_list"]
+        for serial_number_book in book_list:
+            Button(extending_loan_screen,
+                   text=f"Serial Number : {serial_number_book} ,Book Name: {book_list[serial_number_book]['name']} "
+                        f",Author: {book_list[serial_number_book]['author']}, Untill Date : {book_list[serial_number_book]['return_date']}",
+                   command=lambda serial_number_book=serial_number_book: [Book.Extending_loan(username_verify.get(),
+                                                                                              serial_number_book),
+                                                                          refref_db(self,
+                                                                                    extending_loan_screen)]).place(
+                x=150, y=place_y)
+            place_y += 30
+        back_to_menu(extending_loan_screen)
 
 
 class pay_fee_screen():
@@ -206,9 +208,9 @@ class pay_fee_screen():
         Label(pay_fee_screen, text="Pay your fee to library man: ", bg='yellow', font=("Helvetica", 14)).place(x=250,
                                                                                                                y=20)
 
-        paymeny_image = ImageTk.PhotoImage(
+        payment_image = ImageTk.PhotoImage(
             (Image.open(r".\images\paymeny_image.png")).resize((70, 70), Image.ANTIALIAS))
-        Label(pay_fee_screen, image=paymeny_image).place(x=20, y=20)
+        Label(pay_fee_screen, image=payment_image).place(x=20, y=20)
 
         fee = main_dictionary_json["Users"][username_verify.get()]['fee']
         if fee > 0:
@@ -218,27 +220,36 @@ class pay_fee_screen():
             Label(pay_fee_screen, text=f"You have a debt to pay in the amount of {fee} NIS",
                   fg='red', font=("Helvetica", 14)).place(x=20, y=180)
             Button(pay_fee_screen, text="Pay debt", bg='blue', font=("Helvetica", 18),
-                   command=lambda: [Person.Pay_fee(username_verify.get()), sucsess_payment_label(self)]).place(x=300,
-                                                                                                               y=500)
+                   command=lambda: [Person.Pay_fee(username_verify.get()),
+                                    payment_receipt(self, 'The payment was successful')]).place(x=300,
+                                                                                         y=500)
         else:
             Label(pay_fee_screen, text="You don't have a debt to pay", fg='green', height="2",
                   font=("Helvetica", 14)).place(x=20, y=90)
 
-            # Button(pay_fee_screen, text=f"Back to Menu", height='2',
-            #        command=lambda: close_profile_window(pay_fee_screen)).place(x=500, y=550)
         back_to_menu(pay_fee_screen)
 
     def destroy(self):
         pay_fee_screen().destroy()
 
 
-def sucsess_payment_label(self):
-    pay_fee_screen.destroy()
-    self.__init__()
-
+def success_payment_label(self):
+    refref_db(self, pay_fee_screen)
     Label(pay_fee_screen, text="Payment received successfully,\n You can continue to order books", fg='green',
           height="2",
           font=("Helvetica", 13)).place(x=20, y=50)
+
+
+def payment_receipt(self, msg):
+    popup = Tk()
+    popup.geometry('300x200')
+    popup.geometry(
+        "+{}+{}".format(int(popup.winfo_screenwidth() / 2 - popup.winfo_reqwidth() / 2),
+                        int(popup.winfo_screenheight() / 2 - popup.winfo_reqheight() / 2)))
+    popup.wm_title("Payment receipt")
+    Label(popup, text=msg).pack(side="top", fill="x", pady=10)
+    Button(popup, text="Okay", command=lambda: [popup.destroy(), success_payment_label(self)]).pack()
+    popup.mainloop()
 
 
 def add_course_screen():
@@ -269,8 +280,6 @@ def add_course_screen():
            command=lambda: add_course(course_name.get(), weekly_hours.get(), university_points.get())).place(x=300,
                                                                                                              y=500)
 
-    # Button(add_course_screen, text=f"Back to Menu", height='2',
-    #        command=lambda: close_profile_window(add_course_screen)).place(x=500, y=350)
     back_to_menu(add_course_screen)
 
 
@@ -386,7 +395,7 @@ def design_menu_screen():
     Button(text="Order Book", image=order_book_image,
            command=order_book_screen).place(x=250, y=60)
     if is_student:
-        ### Studio menu
+        # Studio menu
         Label(text="Register to Course", anchor="center", font=("Helvetica", 14), bg='blue').place(x=350, y=450)
         register_to_course_image = ImageTk.PhotoImage(
             (Image.open(r".\images\register_to_course_image.png")).resize((70, 70), Image.ANTIALIAS))
@@ -394,7 +403,7 @@ def design_menu_screen():
                command=register_course_screen).place(x=250, y=420)
 
     else:
-        ### Lecturer menu
+        # Lecturer menu
         Label(text="Add Book", anchor="center", font=("Helvetica", 14), bg='blue').place(x=350, y=450)
         add_book_image = ImageTk.PhotoImage(
             (Image.open(r".\images\add_book_image.png")).resize((70, 70), Image.ANTIALIAS))
@@ -435,8 +444,10 @@ def design_menu_screen():
            command=exit).place(x=660, y=500)
     menu_screen.mainloop()
 
+
 class order_book_screen():
     main_dictionary_json = json.load(open('main_dictionary.json'))
+
     def __init__(self):
         global order_book_screen
         order_book_screen = Toplevel(menu_screen)
@@ -444,11 +455,12 @@ class order_book_screen():
         book_serial_number = StringVar()
         author_name = StringVar()
 
-        Label(order_book_screen, anchor="center", font=("Helvetica", 14),text=f"Please select book or insert details",bg='yellow').place(x=250, y=20)
+        Label(order_book_screen, anchor="center", font=("Helvetica", 14), text=f"Please select book or insert details",
+              bg='yellow').place(x=250, y=20)
 
         self.order_book_image = ImageTk.PhotoImage(
             (Image.open(r".\images\order_book_image.png")).resize((70, 70), Image.ANTIALIAS))
-        Label(order_book_screen,image=self.order_book_image).place(x=20,y=20)
+        Label(order_book_screen, image=self.order_book_image).place(x=20, y=20)
 
         Label(order_book_screen, text="Enter book's serial number: ").place(x=100, y=97)
         Entry(order_book_screen, width=20, textvariable=book_serial_number).place(x=270, y=98)
@@ -456,15 +468,13 @@ class order_book_screen():
         Button(order_book_screen, text="Order Book", bg="orange",
                command=lambda: Book.get_book(username_verify.get(), book_serial_number.get())).place(x=400, y=95)
 
-        Label(order_book_screen, anchor="center", font=("Helvetica", 12),fg='blue',text=f"Search books:").place(x=20, y=130)
-
-
+        Label(order_book_screen, anchor="center", font=("Helvetica", 12), fg='blue', text=f"Search books:").place(x=20,
+                                                                                                                  y=130)
 
         Label(order_book_screen, text="Filter by book's Author: ").place(x=20, y=160)
         Entry(order_book_screen, width=20, textvariable=author_name).place(x=170, y=160)
 
         Label(order_book_screen, text="Filter by course").place(x=20, y=190)
-
 
         selected_course = StringVar(None, "All")
 
@@ -484,28 +494,24 @@ class order_book_screen():
                command=lambda: get_books_list_by_course_filter(self, username_verify.get(), selected_course.get(),
                                                                author_name.get())).place(x=300, y=550)
 
-        img =(Image.open(r".\images\back_to_menu_image.png"))
+        img = (Image.open(r".\images\back_to_menu_image.png"))
         resized_image = img.resize((50, 50), Image.ANTIALIAS)
         self.new_image = ImageTk.PhotoImage(resized_image)
         Label(order_book_screen, text=f"Back to Menu").place(x=650, y=10)
         Button(order_book_screen, text=f"Back to Menu", image=self.new_image,
                command=lambda: close_profile_window(order_book_screen)).place(x=660, y=30)
 
-
-
-
     def destroy(self):
         order_book_screen().destroy()
 
 
 def get_books_list_by_course_filter(self, username, selected_course, author_name):
-
     main_dictionary_json = json.load(open('main_dictionary.json'))
     order_book_screen.destroy()
     self.__init__()
     selected_course = selected_course
     book_list_filter = Book.get_books_list_by_course_filter(username, selected_course, author_name)
-    Label(order_book_screen,fg='blue', text=f"Books of {selected_course} : ").place(x=10, y=230)
+    Label(order_book_screen, fg='blue', text=f"Books of {selected_course} : ").place(x=10, y=230)
     place_y = 260
     for serial_number_book in book_list_filter:
         Button(order_book_screen,
@@ -525,32 +531,33 @@ def get_books_list_by_course_filter(self, username, selected_course, author_name
 
 
 def my_profile_screen():
-    global profile_screen
     profile_screen = Toplevel(menu_screen)
     init_screen_setting(profile_screen, "780x620", "Profile")
-    photo = PhotoImage(file=".\images\profile_image.png")
-    photoimage = photo.subsample(3, 3)
-    my_label = Label(profile_screen, image=photoimage)
-    my_label.pack(pady=10)
 
-    Label(profile_screen, text=f"Hi {username_verify.get()}! ", width='30').pack()
+    Label(profile_screen, anchor="center", font=("Helvetica", 14), bg='yellow',
+          text="My Profile").place(x=340, y=20)
+    profile_image = ImageTk.PhotoImage(
+        (Image.open(r".\images\profile_image.png")).resize((70, 70), Image.ANTIALIAS))
+    Label(profile_screen, image=profile_image).place(x=20, y=20)
+
     Label(profile_screen, text=f"ID: {main_dictionary_json['Users'][username_verify.get()]['id']}",
-          width='30').place(x=140, y=240)
+          width='30').place(x=280, y=210)
     Label(profile_screen, text=f"First Name: {main_dictionary_json['Users'][username_verify.get()]['first_name']}",
-          height='2',
-          width='30').place(x=140, y=270)
+          width='30').place(x=280, y=240)
     Label(profile_screen, text=f"Last Name: {main_dictionary_json['Users'][username_verify.get()]['last_name']}",
-          width='30').place(x=140, y=300)
+          width='30').place(x=280, y=270)
     Label(profile_screen, text=f"Date of birth : {main_dictionary_json['Users'][username_verify.get()]['date']}",
-          width='30').place(x=140, y=330)
-    Label(profile_screen, text=f"Password {main_dictionary_json['Users'][username_verify.get()]['password']}",
-          width='30').place(x=140, y=360)
+          width='30').place(x=280, y=300)
+    Label(profile_screen, text=f"Username : {username_verify.get()}",
+          width='30').place(x=280, y=330)
+    Label(profile_screen, text=f"Password : {main_dictionary_json['Users'][username_verify.get()]['password']}",
+          width='30').place(x=280, y=360)
     course_list_type = ''
     if main_dictionary_json['Users'][username_verify.get()]['is_student']:
-        Label(profile_screen, text=f"Student at Ruppin", width='30').place(x=140, y=390)
+        Label(profile_screen, text=f"Position : Student", width='30').place(x=280, y=390)
         course_list_type = 'register_course_list'
     else:
-        Label(profile_screen, text=f"lecturer at Ruppin", width='30').place(x=140, y=390)
+        Label(profile_screen, text=f"Position : Lecturer", width='30').place(x=280, y=390)
         course_list_type = 'teach_course_list'
     place_x = 10
     Label(profile_screen, fg='blue', text=f"My Courses:").place(x=10, y=420)
@@ -565,8 +572,6 @@ def my_profile_screen():
             x=place_x, y=490)
         place_x += 150
 
-    # Button(profile_screen, text="Back to menu", bg='blue', width="30",
-    #        command=lambda: close_profile_window(profile_screen)).place(x=140, y=530)
     back_to_menu(profile_screen)
     profile_screen.mainloop()
 
