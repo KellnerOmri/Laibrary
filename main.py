@@ -83,6 +83,7 @@ def register_user_screen():
 
 
 def add_book_screen():
+    global add_books_screen
     add_books_screen = Toplevel(menu_screen)
     init_screen_setting(add_books_screen, "780x620", "Add Book To Library")
 
@@ -122,12 +123,13 @@ def add_book_screen():
     Button(add_books_screen, text="submit", bg='blue', height='2', width='30',
            command=lambda: add_book(serial_num.get(), book_name.get(), author_name.get(),
                                     inventory_quantity.get(),
-                                    get_useful_courses_list(course_list))).place(x=300, y=500)
+                                    get_useful_courses_list(course_list, 1))).place(x=300, y=500)
     back_to_menu(add_books_screen)
 
-    def add_book(serial_num, book_name, author_name, inventory_quantity, useful_courses_list):
-        Book.add_book_to_list(serial_num, book_name, author_name, inventory_quantity, useful_courses_list)
-        Label(add_books_screen, text=f"registration success!", width=30, height='2').place(x=210, y=360)
+
+def add_book(serial_num, book_name, author_name, inventory_quantity, useful_courses_list):
+    Book.add_book_to_list(serial_num, book_name, author_name, inventory_quantity, useful_courses_list)
+    Label(add_books_screen, text=f"registration success!", width=30, height='2').place(x=210, y=360)
 
 
 def back_to_menu(screen_name):
@@ -222,7 +224,7 @@ class pay_fee_screen():
             Button(pay_fee_screen, text="Pay debt", bg='blue', font=("Helvetica", 18),
                    command=lambda: [Person.Pay_fee(username_verify.get()),
                                     payment_receipt(self, 'The payment was successful')]).place(x=300,
-                                                                                         y=500)
+                                                                                                y=500)
         else:
             Label(pay_fee_screen, text="You don't have a debt to pay", fg='green', height="2",
                   font=("Helvetica", 14)).place(x=20, y=90)
